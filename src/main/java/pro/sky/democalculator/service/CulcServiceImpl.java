@@ -1,6 +1,7 @@
-package pro.sky.democalculator;
+package pro.sky.democalculator.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.democalculator.CalcService;
 
 @Service
 public class CulcServiceImpl implements CalcService {
