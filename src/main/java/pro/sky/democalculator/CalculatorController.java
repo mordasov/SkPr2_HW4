@@ -1,10 +1,12 @@
 package pro.sky.democalculator;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/calculator")
 public class CalculatorController {
     private final CalcService calcService;
 
@@ -12,28 +14,32 @@ public class CalculatorController {
         this.calcService = calcService;
     }
 
-    @GetMapping(path = "/calculator")
+    @GetMapping
     public String greeting() {
-        return calcService.greeting();
+        return "Добро пожаловать в кулькулятор";
     }
 
-    @GetMapping(path = "/calculator/plus")
+    @GetMapping(path = "/plus")
     public String plusNum(@RequestParam("num1") int a, @RequestParam("num2") int b) {
-        return calcService.plusNum(a, b);
+        return a + " + " + b + " = " + calcService.plusNum(a, b);
     }
 
-    @GetMapping(path = "/calculator/minus")
+    @GetMapping(path = "/minus")
     public String minusNum(@RequestParam("num1") int a, @RequestParam("num2") int b) {
-        return calcService.minusNum(a, b);
+        return a + " - " + b + " = " + calcService.minusNum(a, b);
     }
 
-    @GetMapping(path = "/calculator/multiply")
+    @GetMapping(path = "/multiply")
     public String multiplyNum(@RequestParam("num1") int a, @RequestParam("num2") int b) {
-        return calcService.multiplyNum(a, b);
+        return a + " * " + b + " = " + calcService.multiplyNum(a, b);
     }
 
-    @GetMapping(path = "/calculator/divide")
+    @GetMapping(path = "/divide")
     public String divideNum(@RequestParam("num1") int a, @RequestParam("num2") int b) {
-        return calcService.divideNum(a, b);
+        if (b != 0) {
+            return a + " / " + b + " = " + calcService.divideNum(a, b);
+        } else {
+            return "На ноль делить запрещено";
+        }
     }
 }
