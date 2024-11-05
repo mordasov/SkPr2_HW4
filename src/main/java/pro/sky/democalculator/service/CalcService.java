@@ -1,4 +1,4 @@
-package pro.sky.democalculator;
+package pro.sky.democalculator.service;
 
 public interface CalcService {
 
